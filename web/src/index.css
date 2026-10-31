@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #111317;
+  --color-panel: #171a20;
+  --color-panel-2: #1d2128;
+  --color-panel-3: #252a33;
+  --color-line: #2a2f39;
+  --color-line-strong: #3a4150;
+  --color-ink: #d9dde4;
+  --color-ink-strong: #f3f4f6;
+  --color-muted: #8b93a1;
+  --color-faint: #5d6574;
+  --color-accent: #38bdf8;
+  --color-accent-strong: #0ea5e9;
+  --color-sev-critical: #ef4444;
+  --color-sev-high: #f97316;
+  --color-sev-medium: #eab308;
+  --color-sev-low: #7c9cc4;
+  --color-sev-info: #6b7280;
+  --color-ok: #22c55e;
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Mono", "Consolas", ui-monospace, monospace;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  color-scheme: dark;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-line-strong);
+  border-radius: 6px;
+  border: 2px solid var(--color-bg);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+  color: inherit;
+}
+
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.7);
+}
+
+@layer components {
+  .field {
+    @apply h-8 rounded-md border border-line bg-panel-2 px-2.5 text-[13px] text-ink outline-none transition-colors placeholder:text-faint focus:border-accent;
+  }
+  textarea.field {
+    @apply h-auto py-2;
+  }
+  .btn {
+    @apply inline-flex h-8 items-center justify-center gap-1.5 rounded-md border border-line bg-panel-2 px-3 text-[13px] font-medium text-ink transition-colors hover:border-line-strong hover:bg-panel-3 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply border-accent-strong bg-accent-strong/90 text-[#04121c] hover:border-accent hover:bg-accent;
+  }
+  .btn-danger {
+    @apply border-sev-critical/60 bg-sev-critical/15 text-sev-critical hover:border-sev-critical hover:bg-sev-critical/25;
+  }
+  .btn-ghost {
+    @apply border-transparent bg-transparent hover:border-line hover:bg-panel-2;
+  }
+  .panel {
+    @apply rounded-lg border border-line bg-panel;
+  }
+  .panel-title {
+    @apply text-[11px] font-semibold uppercase tracking-[0.08em] text-muted;
+  }
+  .table {
+    @apply w-full border-collapse text-left text-[12.5px];
+  }
+  .table th {
+    @apply sticky top-0 z-10 border-b border-line bg-panel px-3 py-2 text-[11px] font-semibold uppercase tracking-wider text-muted;
+  }
+  .table td {
+    @apply border-b border-line/60 px-3 py-1.5 align-middle;
+  }
+  .table tbody tr {
+    @apply transition-colors;
+  }
+  .table tbody tr.clickable {
+    @apply cursor-pointer hover:bg-panel-2;
+  }
+  .label {
+    @apply mb-1 block text-[11px] font-medium uppercase tracking-wider text-muted;
+  }
+  .mono {
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+}
